@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
-    <ProjectGuid>{CFE6ABFB-FCC1-4799-93E0-4D86710E555C}</ProjectGuid>
+    <ProjectGuid>{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>decrypt</RootNamespace>
     <AssemblyName>decrypt</AssemblyName>
@@ -17,12 +17,18 @@
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>obj\anycpu\Debug</IntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|anycpu' ">
     <Optimize>true</Optimize>
     <OutputPath>bin\Release</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <IntermediateOutputPath>obj\anycpu\Release</IntermediateOutputPath>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Key.cs" />
+    <Compile Include="DecryptMain.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

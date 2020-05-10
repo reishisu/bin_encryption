@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "encrypt", "encrypt\encrypt.csproj", "{360713CC-3E15-49CF-818E-593DCB93F54D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "decrypt", "decrypt\decrypt.csproj", "{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{360713CC-3E15-49CF-818E-593DCB93F54D}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{360713CC-3E15-49CF-818E-593DCB93F54D}.Debug|anycpu.Build.0 = Debug|anycpu
+		{360713CC-3E15-49CF-818E-593DCB93F54D}.Release|anycpu.ActiveCfg = Release|anycpu
+		{360713CC-3E15-49CF-818E-593DCB93F54D}.Release|anycpu.Build.0 = Release|anycpu
+		{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}.Debug|anycpu.Build.0 = Debug|anycpu
+		{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}.Release|anycpu.ActiveCfg = Release|anycpu
+		{F8D4E1A7-F683-4A51-A8C3-9DA5421276E5}.Release|anycpu.Build.0 = Release|anycpu
+	EndGlobalSection
+EndGlobal

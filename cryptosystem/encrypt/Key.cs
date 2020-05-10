@@ -87,7 +87,7 @@ public class Key {
 			// 生成した鍵をファイルに書き込む
 			using (StreamWriter file = new StreamWriter(filePath, false, System.Text.Encoding.GetEncoding("UTF-8"))) {
 				// 1つ前の鍵を元に、鍵自体を暗号化して1行ずつ書き込んでいく
-				for (int i = 1; i <= 2; i++) file.WriteLine(EncryptKey(keys[i], keys[0]).value);
+				for (int i = 1; i <= 2; i++) file.WriteLine(EncryptKey(keys[i], keys[i-1]).value);
 			}
 		}
 	}

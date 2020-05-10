@@ -32,6 +32,12 @@ namespace encrypt {
 
 			// コンソールの文字コードの設定
 			Console.OutputEncoding = Encoding.UTF8;
+
+			string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+			string filePath = $"{ dirPath }/.nk_cryptosystem/enc_keys.txt";
+
+			Console.WriteLine($"パス：{ filePath }");
+
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileEncrypt(args[0]);
 		}

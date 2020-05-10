@@ -33,7 +33,13 @@ public class Key {
 			};
 
 		// 鍵が保管されているファイルパス
-		string filePath = $"{Environment.SpecialFolder.Personal}/.nk_cryptosystem/enc_keys.txt";
+		// {Directory.GetCurrentDirectory()}
+		//string filePath = $"/Users/reishisu/Desktop/.nk_cryptosystem/enc_keys.txt";
+		string dirPath = Environment.GetFolderPath(
+			Environment.SpecialFolder.MyDocuments,
+			Environment.SpecialFolderOption.Create
+		);
+		string filePath = $"{dirPath}/nk_cryptosystem/enc_keys.txt";
 		Console.WriteLine(filePath);
 
 		// ファイルが存在するとき

@@ -35,8 +35,8 @@ public class Key {
 		// 鍵が保管されているファイルパス
 		// {Directory.GetCurrentDirectory()}
 		//string filePath = $"/Users/reishisu/Desktop/.nk_cryptosystem/enc_keys.txt";
-		string dirPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-		string filePath = $"{ dirPath }/.nk_cryptosystem/enc_keys.txt";
+		string dirPath = $"{ Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) }/.nk_cryptosystem";
+		string filePath = $"{ dirPath }/enc_keys.txt";
 		Console.WriteLine("Path : " + filePath);
 
 		// ファイルが存在するとき
@@ -66,6 +66,9 @@ public class Key {
 		}
 		// 存在しないとき
 		else {
+
+			// ディレクトリの生成
+			Directory.CreateDirectory(dirPath);
 
 			// 鍵の生成
 			for (int i = 1; i <= 2; i++) {

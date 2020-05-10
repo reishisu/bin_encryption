@@ -2,8 +2,6 @@
 using System.IO;
 using System.Text;
 
-using common;
-
 /*
  * カレントディレクトリ取得
  * http://var.blog.jp/archives/66978870.html
@@ -32,7 +30,8 @@ namespace decrypt {
 		private static void Main (string[] args) {
 
 			// 文字コードの設定
-			Console.OutputEncoding = Encoding.UTF8;
+			//Console.OutputEncoding = Encoding.UTF8;
+
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileDecrypt(args[0]);
 		}

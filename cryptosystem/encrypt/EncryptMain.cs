@@ -31,7 +31,7 @@ namespace encrypt {
 		public static void Main (string[] args) {
 
 			// コンソールの文字コードの設定
-			Console.OutputEncoding = Encoding.UTF8;
+			//Console.OutputEncoding = Encoding.UTF8;
 
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileEncrypt(args[0]);

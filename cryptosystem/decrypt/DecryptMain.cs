@@ -29,6 +29,7 @@ namespace decrypt {
 		/// </summary>
 		/// <param name="args">コマンドライン引数</param>
 		private static void Main (string[] args) {
+
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileDecrypt(args[0]);
 		}
@@ -45,13 +46,11 @@ namespace decrypt {
 
 				// 復号化ファイルの出力バス
 				string exportFilePath = $"{filePath}.bin";
-
 				// すでに暗号化されたファイルが存在している場合は削除する
 				if (File.Exists(exportFilePath)) File.Delete(exportFilePath);
 
 				// ファイルに書き込む
-				FileStream fs = new FileStream(exportFilePath, FileMode.CreateNew);
-				using (BinaryWriter file = new BinaryWriter(fs) ) {
+				using (BinaryWriter file = new BinaryWriter(new FileStream(exportFilePath, FileMode.CreateNew))) {
 
 					// 読み込めている間コンソールに出力し続ける
 					while (br.BaseStream.Position != br.BaseStream.Length) {

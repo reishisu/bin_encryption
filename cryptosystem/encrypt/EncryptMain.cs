@@ -30,9 +30,6 @@ namespace encrypt {
 		/// <param name="args">コマンドライン引数</param>
 		public static void Main (string[] args) {
 
-			// コンソールの文字コードの設定
-			//Console.OutputEncoding = Encoding.UTF8;
-
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileEncrypt(args[0]);
 		}
@@ -53,7 +50,6 @@ namespace encrypt {
 
 				// 暗号化ファイルの出力バス
 				string exportFilePath = $"{filePath}.enc";
-
 				// すでに暗号化されたファイルが存在している場合は削除する
 				if (File.Exists(exportFilePath)) File.Delete(exportFilePath);
 
@@ -63,19 +59,14 @@ namespace encrypt {
 					// 読み込めている間コンソールに出力し続ける
 					while (br.BaseStream.Position != br.BaseStream.Length) {
 
+						// 1バイト読み込む
 						ulong plane = br.ReadByte();
-						
 						// 暗号化する
 						ulong encrypt_value = Key.Encrypt(plane);
-						Console.WriteLine($"Pos : {br.BaseStream.Position.ToString().PadLeft(3, '0')}, IN : {plane.ToString().PadLeft(20, '0')}, Enc : {encrypt_value.ToString().PadLeft(20, '0')}, Ex : {encrypt_value.ToString("x").PadLeft(16, '0')}");
-
 						// 暗号化された値の書き込みを行う
 						file.Write(encrypt_value);
 					}
 				}
-				Console.WriteLine("");
-				Console.WriteLine("");
-				Console.WriteLine($"exportPath:{filePath}");
 			}
 		}
 	}

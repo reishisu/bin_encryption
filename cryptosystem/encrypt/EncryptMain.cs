@@ -48,7 +48,8 @@ namespace encrypt {
 			 * バイナリファイルの読み込みを行う
 			 * 現状はカレントディレクトリのバイナリファイルでやる
 			 */
-			using (BinaryReader br = new BinaryReader(File.OpenRead(filePath))) {
+			FileStream fs = File.OpenRead(filePath);
+			using (BinaryReader br = new BinaryReader(fs)) {
 
 				// 暗号化ファイルの出力バス
 				string exportFilePath = $"{filePath}.enc";
@@ -62,16 +63,12 @@ namespace encrypt {
 					// 読み込めている間コンソールに出力し続ける
 					while (br.BaseStream.Position != br.BaseStream.Length) {
 
-						// バイナリファイルから8バイト取得するための変数を準備
-						byte[] buffer = new byte[8];
-						// 実際に読み込みを行う
-						int result = br.Read(buffer, 0, 8);
-						// 読み込んだ鍵をulong型にキャスト
-						ulong plane = BitConverter.ToUInt64(buffer, 0);
-
+						ulong plane = br.ReadByte();
+						
 						// 暗号化する
-						ulong encrypt_value = Key.Encrypt(plane, result);
+						ulong encrypt_value = Key.Encrypt(plane);
 						Console.WriteLine($"Pos : {br.BaseStream.Position.ToString().PadLeft(3, '0')}, IN : {plane.ToString().PadLeft(20, '0')}, Enc : {encrypt_value.ToString().PadLeft(20, '0')}, Ex : {encrypt_value.ToString("x").PadLeft(16, '0')}");
+
 						// 暗号化された値の書き込みを行う
 						file.Write(encrypt_value);
 					}

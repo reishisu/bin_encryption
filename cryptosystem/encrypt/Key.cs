@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -129,23 +130,10 @@ public class Key {
 	/// </summary>
 	/// <param name="value">暗号化する値</param>
 	/// <returns>暗号化した値が返される</returns>
-	public static ulong Encrypt (ulong value, int size) {
+	public static ulong Encrypt (ulong value) {
 
 		// 暗号化した値を代入する変数
 		ulong encrypt_value = value;
-
-		//
-		byte[] bytes = BitConverter.GetBytes(value);
-
-		Console.Write($" i_size {bytes.Count()} :::: ");
-
-		bytes.Count(
-			(value) => {
-				Console.Write($"{value} ");
-				return true;
-			}
-		);
-		Console.WriteLine($" :::: Size {bytes.Count()}");
 
 		// 平文を反転させて、デフォルトの鍵との排他的論理和を取る
 		encrypt_value = ~encrypt_value ^ keys[0].value;

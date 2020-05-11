@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 /*
  * カレントディレクトリ取得
@@ -28,10 +29,6 @@ namespace decrypt {
 		/// </summary>
 		/// <param name="args">コマンドライン引数</param>
 		private static void Main (string[] args) {
-
-			// 文字コードの設定
-			//Console.OutputEncoding = Encoding.UTF8;
-
 			// コマンドライン引数で指定されたファイルの暗号化を行う
 			BinFileDecrypt(args[0]);
 		}
@@ -53,25 +50,21 @@ namespace decrypt {
 				if (File.Exists(exportFilePath)) File.Delete(exportFilePath);
 
 				// ファイルに書き込む
-				using (BinaryWriter file = new BinaryWriter(new FileStream(exportFilePath, FileMode.CreateNew))) {
-
-					//Console.WriteLine($"[br.BaseStream.Length] : {br.BaseStream.Length}");
+				FileStream fs = new FileStream(exportFilePath, FileMode.CreateNew);
+				using (BinaryWriter file = new BinaryWriter(fs) ) {
 
 					// 読み込めている間コンソールに出力し続ける
 					while (br.BaseStream.Position != br.BaseStream.Length) {
 
-						long length = 8;
-						byte[] buffer = new byte[length];
-						if (length != 8) Console.Write("【!!!】");
-						int result = br.Read(buffer, 0, buffer.Length);
+						// 先頭から8バイト読み込む
+						byte[] buffer = new byte[8];
+						br.Read(buffer, 0, buffer.Length);
+						// ulong型に変換する
 						ulong plane = BitConverter.ToUInt64(buffer, 0);
-						ulong decrypt_value = Key.Decrypt(plane);
-						Console.Write($"Pos : {br.BaseStream.Position.ToString().PadLeft(3, '0')}, IN : {plane.ToString().PadLeft(20, '0')}({plane.ToString("x").PadLeft(16, '0')}), Dec : {decrypt_value.ToString().PadLeft(20, '0')}, 0x : {decrypt_value.ToString("x").PadLeft(16, '0')}, Export : ");
-						foreach (byte b in BitConverter.GetBytes(decrypt_value)) {
-							Console.Write(Convert.ToString(b, 16).PadLeft(2, '0'));
-							file.Write(b);
-						}
-						Console.WriteLine("");
+						// 復号化する
+						byte decrypt_value = (byte) Key.Decrypt(plane);
+						// ファイルに書き込み
+						file.Write(decrypt_value);
 					}
 				}
 			}

@@ -58,7 +58,7 @@ namespace encrypt {
 
 					// 読み込めている間コンソールに出力し続ける
 					while (br.BaseStream.Position != br.BaseStream.Length) {
-
+						
 						// 1バイト読み込む
 						ulong plane = br.ReadByte();
 						// 暗号化する

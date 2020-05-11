@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 
 /// <summary>
 /// 鍵のシングルトンなクラス
@@ -128,10 +129,23 @@ public class Key {
 	/// </summary>
 	/// <param name="value">暗号化する値</param>
 	/// <returns>暗号化した値が返される</returns>
-	public static ulong Encrypt (ulong value) {
+	public static ulong Encrypt (ulong value, int size) {
 
 		// 暗号化した値を代入する変数
 		ulong encrypt_value = value;
+
+		//
+		byte[] bytes = BitConverter.GetBytes(value);
+
+		Console.Write($" i_size {bytes.Count()} :::: ");
+
+		bytes.Count(
+			(value) => {
+				Console.Write($"{value} ");
+				return true;
+			}
+		);
+		Console.WriteLine($" :::: Size {bytes.Count()}");
 
 		// 平文を反転させて、デフォルトの鍵との排他的論理和を取る
 		encrypt_value = ~encrypt_value ^ keys[0].value;
@@ -146,33 +160,5 @@ public class Key {
 
 		return encrypt_value;
 	}
-
-
-	/// <summary>
-	/// 復号化を行う関数
-	/// </summary>
-	/// <param name="encrypt_value">暗号化された値</param>
-	/// <returns>復号化された値が返される</returns>
-	public static ulong Decrypt (ulong encrypt_value) {
-
-		// 複合化された値を代入する変数
-		ulong decrypt_value = encrypt_value;
-
-		// 3つ目の鍵の値の排他的論理和を取る
-		decrypt_value ^= keys[2].value;
-		// 反転させる
-		decrypt_value = ~decrypt_value;
-		// 反転させた値と2つ目の鍵の値の排他的論理和を取る
-		decrypt_value ^= keys[1].value;
-		// 反転させる
-		decrypt_value = ~decrypt_value;
-		// 反転させた値とデフォルトの鍵の値の排他的論理和を取る
-		decrypt_value ^= keys[0].value;
-		// 反転させる
-		decrypt_value = ~decrypt_value;
-
-		return decrypt_value;
-	}
-
 	#endregion
 }

@@ -124,31 +124,6 @@ public class Key {
 
 
 	/// <summary>
-	/// 暗号化を行う関数
-	/// </summary>
-	/// <param name="value">暗号化する値</param>
-	/// <returns>暗号化した値が返される</returns>
-	public static ulong Encrypt (ulong value) {
-
-		// 暗号化した値を代入する変数
-		ulong encrypt_value = value;
-
-		// 平文を反転させて、デフォルトの鍵との排他的論理和を取る
-		encrypt_value = ~encrypt_value ^ keys[0].value;
-		// 反転させる
-		encrypt_value = ~encrypt_value;
-		// 反転させた値と2つ目の鍵の値の排他的論理和を取る
-		encrypt_value ^= keys[1].value;
-		// 反転させる
-		encrypt_value = ~encrypt_value;
-		// 反転させた値と3つ目の鍵の値の排他的論理和を取る
-		encrypt_value ^= keys[2].value;
-
-		return encrypt_value;
-	}
-
-
-	/// <summary>
 	/// 復号化を行う関数
 	/// </summary>
 	/// <param name="encrypt_value">暗号化された値</param>

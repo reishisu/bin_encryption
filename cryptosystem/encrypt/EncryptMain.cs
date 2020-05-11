@@ -70,7 +70,7 @@ namespace encrypt {
 						ulong plane = BitConverter.ToUInt64(buffer, 0);
 
 						// 暗号化する
-						ulong encrypt_value = Key.Encrypt(plane);
+						ulong encrypt_value = Key.Encrypt(plane, result);
 						Console.WriteLine($"Pos : {br.BaseStream.Position.ToString().PadLeft(3, '0')}, IN : {plane.ToString().PadLeft(20, '0')}, Enc : {encrypt_value.ToString().PadLeft(20, '0')}, Ex : {encrypt_value.ToString("x").PadLeft(16, '0')}");
 						// 暗号化された値の書き込みを行う
 						file.Write(encrypt_value);

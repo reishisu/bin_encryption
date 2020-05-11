@@ -1,20 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 
-
-/*
- * カレントディレクトリ取得
- * http://var.blog.jp/archives/66978870.html
- * 文字コード判別
- * http://namco.hatenablog.jp/entry/2017/02/05/160119
- * バイナリファイルのIO
- * https://qiita.com/miyamoto_works/items/637732d880defd1d437d
- * 暗号化参考
- * http://www.mizuko.okayama-c.ed.jp/gakka/i/H22kaken/H22h-ang.pdf
- * 共通鍵にした裏付け
- * https://www.nic.ad.jp/ja/materials/iw/2008/proceedings/H10/IW2008-H10-01.pdf
- */
 
 namespace encrypt {
 
